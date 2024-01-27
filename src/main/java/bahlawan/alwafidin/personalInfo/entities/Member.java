@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -19,7 +20,7 @@ import java.util.Date;
 public class Member extends Person{
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Parent parent;
+    private Parent parent = new Parent();
 
     @Transient
     protected Boolean isParent = false;

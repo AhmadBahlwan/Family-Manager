@@ -1,6 +1,7 @@
 package bahlawan.alwafidin.personalInfo.services;
 
 import bahlawan.alwafidin.personalInfo.entities.Person;
+import bahlawan.alwafidin.personalInfo.exceptions.PersonNotFoundException;
 import bahlawan.alwafidin.personalInfo.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,5 +35,31 @@ public class PersonService {
         Sort sort = Sort.by(sortField);
         sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
         return PageRequest.of(pageNum - 1, size, sort);
+    }
+
+    public Person get(int id) throws PersonNotFoundException {
+        return repository.findById(id).orElseThrow(() -> new PersonNotFoundException("Could not find person with this id: " + id ));
+    }
+
+    public boolean isNationalNumberUnique(Integer id, String nationalNumber) {
+        Person person = repository.findByNationalNumber(nationalNumber);
+
+        if (id == null) {
+            return person == null;
+        }
+
+        return person == null || person.getId().equals(id);
+    }
+
+    public Person save(Person person) {
+        return repository.save(person);
+    }
+
+    public void delete(Integer id) throws PersonNotFoundException{
+        Long personCount = repository.countById(id);
+        if (personCount == null || personCount == 0)
+            throw new PersonNotFoundException("Could not find any user with id "+ id);
+
+        repository.deleteById(id);
     }
 }

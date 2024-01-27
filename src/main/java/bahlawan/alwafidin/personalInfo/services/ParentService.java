@@ -90,4 +90,8 @@ public class ParentService {
         sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
         return PageRequest.of(pageNum - 1, PERSONS_BY_PAGE, sort);
     }
+
+    public Parent save(Parent parent) {
+        return repo.save(parent);
+    }
 }

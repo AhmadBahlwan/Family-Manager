@@ -49,9 +49,9 @@
 <!--          <div th:replace="fragments :: status(${user.isParent}, 'user', '/users/' + ${user.id})"></div>-->
 <!--        </td>-->
         <td>
-          <div th:replace="fragments :: edit('user', '/users/edit/' + ${person.id})"></div>
+          <div th:replace="fragments :: edit('person', '/persons/edit/' + ${person.id})"></div>
           &nbsp;&nbsp;
-          <div th:replace="fragments :: delete('user', ${person.id}, '/users/delete/' + ${person.id}, true)"></div>
+          <div th:replace="fragments :: delete('person', ${person.id}, '/persons/delete/' + ${person.id}, true)"></div>
         </td>
       </tr>
       </tbody>

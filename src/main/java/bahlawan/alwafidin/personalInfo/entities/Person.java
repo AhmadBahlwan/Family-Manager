@@ -1,6 +1,10 @@
 package bahlawan.alwafidin.personalInfo.entities;
 
+//import bahlawan.alwafidin.personalInfo.DateDeserializer;
+//import bahlawan.alwafidin.personalInfo.DateSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,7 +25,7 @@ public abstract class Person extends AbstractAddress {
     private String nationalNumber;
 
     @Column
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "MM/dd/yyyy")
     private Date birthdate;
 
     public Person(String firstName, String middleName, String lastName, String nationalNumber, Date birthdate) {

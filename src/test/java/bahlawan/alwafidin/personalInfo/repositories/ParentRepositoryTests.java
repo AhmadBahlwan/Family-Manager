@@ -43,7 +43,6 @@ public class ParentRepositoryTests {
                     .firstName("Ahmad")
                     .lastName("Bahlawan")
                     .nationalNumber("20210012131")
-                    .birthdate(new Date())
                     .phoneNumber("+963994844")
                     .familyBookId("1546462")
                     .address("مخيم الوافدين")
