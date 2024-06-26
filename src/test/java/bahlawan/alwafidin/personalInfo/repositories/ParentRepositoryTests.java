@@ -26,11 +26,6 @@ import java.util.HashSet;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
 public class ParentRepositoryTests {
-
-    private static final String PATH = "C:\\Users\\Ahmed\\Downloads\\Telegram Desktop\\ملف نهائي.xlsx";
-    private  static final int SHEET_INDEX = 0;
-    private static final int ROW_INDEX = 2;
-    private static final  int FIRST_MEMBER_INDEX = 12;
     @Autowired
     private ParentRepository parentRepo;
 

@@ -22,10 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback
 public class MemberRepositoryTests {
-
-    private static final String PATH = "C:\\Users\\Ahmed\\Downloads\\Telegram Desktop\\ملف نهائي.xlsx";
-    private static final int SHEET_INDEX = 0;
-    private static final int ROW_INDEX = 2;
     @Autowired
     private MemberRepository repo;
 

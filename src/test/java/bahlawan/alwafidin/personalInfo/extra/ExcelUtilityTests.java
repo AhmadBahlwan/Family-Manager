@@ -1,30 +1,35 @@
 package bahlawan.alwafidin.personalInfo.extra;
 
-import bahlawan.alwafidin.personalInfo.entities.Member;
-import bahlawan.alwafidin.personalInfo.entities.Parent;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.util.StringUtil;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashSet;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
-import java.util.Set;
 
 
 public class ExcelUtilityTests {
 
-    private static final String PATH = "C:\\Users\\Ahmed\\Downloads\\Telegram Desktop\\ملف نهائي.xlsx";
+    private static String PATH;
     private  static final int SHEET_INDEX = 0;
     private static final int ROW_INDEX = 2;
 
+    @BeforeAll
+    static void beforeAll() {
+        Path resourceDir = Paths.get("src\\test\\resources\\");
+        PATH = resourceDir.toFile().getAbsolutePath() + "\\file.xlsx";
+    }
+
     @Test
     public void readPersonInfoFromExcelRowTest() {
+
         try(FileInputStream file = new FileInputStream(PATH)) {
             Workbook workbook =  new XSSFWorkbook(file);
             Sheet sheet = workbook.getSheetAt(0);

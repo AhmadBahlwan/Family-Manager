@@ -1,18 +1,19 @@
 package bahlawan.alwafidin.personalInfo.services;
 
 import bahlawan.alwafidin.personalInfo.repositories.ParentRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -27,12 +28,14 @@ public class ParentServiceTests {
     @InjectMocks
     ParentService service;
 
-    @Mock
-    private ObjectMapper objectMapper;
+    private static String PATH;
 
-    private static final String PATH = "C:\\Users\\Ahmed\\Downloads\\Telegram Desktop\\ملف نهائي.xlsx";
-    private  static final int SHEET_INDEX = 0;
-    private static final int ROW_INDEX = 2;
+
+    @BeforeAll
+    static void beforeAll() {
+        Path resourceDir = Paths.get("src\\test\\resources\\");
+        PATH = resourceDir.toFile().getAbsolutePath() + "\\file.xlsx";
+    }
 
     @Test
     public void readParentsInfoFroExcelFileTest() {
