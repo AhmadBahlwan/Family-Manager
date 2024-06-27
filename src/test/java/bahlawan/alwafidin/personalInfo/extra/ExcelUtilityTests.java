@@ -23,8 +23,8 @@ public class ExcelUtilityTests {
 
     @BeforeAll
     static void beforeAll() {
-        Path resourceDir = Paths.get("src\\test\\resources\\");
-        PATH = resourceDir.toFile().getAbsolutePath() + "\\file.xlsx";
+        Path resourceDir = Paths.get("src", "test", "resources");
+        PATH = resourceDir.toFile().getAbsolutePath() + "/file.xlsx";
     }
 
     @Test
