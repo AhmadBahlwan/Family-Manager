@@ -1,0 +1,17 @@
+version: '3.8' # Or a compatible version
+services:
+  db:
+    image: mysql:8.0 # Specify the desired MySQL version
+    environment:
+      MYSQL_ROOT_PASSWORD: bahlawan
+      MYSQL_DATABASE: family # Optional: Create a database on startup
+      MYSQL_USER: ahmad # Optional: Create a user on startup
+      MYSQL_PASSWORD: 1997 # Optional: Set password for the user
+    ports:
+      - "3306:3306" # Map host port 3306 to container port 3306
+    volumes:
+      - db_data:/var/lib/mysql # Persist data in a named volume
+    restart: always # Ensure the container restarts if it stops
+
+volumes:
+  db_data: # Define the named volume for data persistence
