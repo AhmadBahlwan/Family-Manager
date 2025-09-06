@@ -13,12 +13,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonService {
 
-    @Autowired
-    private PersonRepository repository;
+    private final PersonRepository repository;
 
     private static final int PERSONS_BY_PAGE = 20;
 
     private static final int SEARCH_RESULT_BY_PAGE = 10;
+
+    public PersonService(PersonRepository repository) {
+        this.repository = repository;
+    }
 
     public Page<Person> listByPage(Integer pageNumber, String sortField, String sortDir, String keyword) {
         Pageable pageable = createPageable(pageNumber, PERSONS_BY_PAGE, sortField, sortDir);

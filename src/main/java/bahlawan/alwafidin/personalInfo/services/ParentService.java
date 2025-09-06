@@ -2,7 +2,6 @@ package bahlawan.alwafidin.personalInfo.services;
 
 import bahlawan.alwafidin.personalInfo.entities.Member;
 import bahlawan.alwafidin.personalInfo.entities.Parent;
-import bahlawan.alwafidin.personalInfo.entities.Person;
 import bahlawan.alwafidin.personalInfo.extra.ExcelUtility;
 import bahlawan.alwafidin.personalInfo.repositories.MemberRepository;
 import bahlawan.alwafidin.personalInfo.repositories.ParentRepository;
@@ -11,7 +10,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -27,11 +25,12 @@ public class ParentService {
     private static final int FIRST_MEMBER_INDEX = 12;
 
     private static final int PERSONS_BY_PAGE = 20;
-    @Autowired
-    private ParentRepository repo;
+    private final ParentRepository repo;
 
-    @Autowired
-    private MemberRepository memberRepo;
+
+    public ParentService(ParentRepository repo, MemberRepository memberRepo) {
+        this.repo = repo;
+    }
 
     public void createParentFromExcelFile(InputStream file) {
         Workbook workbook = null;

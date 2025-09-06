@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MemberService {
-    @Autowired
-    private MemberRepository repository;
+    private final MemberRepository repository;
+
+    public MemberService(MemberRepository repository) {
+        this.repository = repository;
+    }
 
     public Member save(Member member) {
         return repository.save(member);

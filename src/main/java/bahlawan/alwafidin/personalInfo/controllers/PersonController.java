@@ -1,33 +1,29 @@
 package bahlawan.alwafidin.personalInfo.controllers;
 
 import bahlawan.alwafidin.personalInfo.entities.Member;
-import bahlawan.alwafidin.personalInfo.entities.Parent;
 import bahlawan.alwafidin.personalInfo.entities.Person;
 import bahlawan.alwafidin.personalInfo.exceptions.PersonNotFoundException;
-import bahlawan.alwafidin.personalInfo.repositories.ParentRepository;
 import bahlawan.alwafidin.personalInfo.services.MemberService;
 import bahlawan.alwafidin.personalInfo.services.ParentService;
 import bahlawan.alwafidin.personalInfo.services.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.io.IOException;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class PersonController {
 
-    @Autowired
-    PersonService personService;
-    @Autowired
-    ParentService parentService;
-    @Autowired
-    MemberService memberService;
+    private final PersonService personService;
+    private final MemberService memberService;
+
+    public PersonController(PersonService personService, ParentService parentService, MemberService memberService) {
+        this.personService = personService;
+        this.memberService = memberService;
+    }
 
     @GetMapping("/persons")
     public String listFirstPage(@RequestParam(defaultValue = "asc") String sortDirection, Model model) {
